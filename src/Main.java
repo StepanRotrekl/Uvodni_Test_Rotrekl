@@ -21,85 +21,76 @@ while (running) {
     System.out.println("4. Najit mazlicka podle jmena");
     System.out.println("5. Filtrovat podle druhu");
     System.out.println("6. Ukoncit");
-}
 
-int volba = scanner.nextInt();
-scanner.nextLine();
 
-switch (volba) {
-    case 1: {
-        System.out.println("Zadejte jmeno: ");
-        String jmeno = scanner.nextLine();
-        scanner.nextLine();
+    int volba = scanner.nextInt();
+    scanner.nextLine();
 
-        System.out.println("Zadejte druh: ");
-        String druh = scanner.nextLine();
-        scanner.nextLine();
+    switch (volba) {
+        case 1 -> {
+            System.out.println("Zadejte jmeno: ");
+            String jmeno = scanner.nextLine();
 
-        System.out.println("Zadejte vek: ");
-        int vek = scanner.nextInt();
-        scanner.nextLine();
 
-        System.out.println("Zadejte vahu: ");
-        double vaha = scanner.nextDouble();
-        scanner.nextLine();
-        mazlicek.add(new Mazlicek(jmeno, druh, vek, vaha)); }
-    case 2: {
-        for (Mazlicek m : mazlicek)
-        System.out.println(m);
-    }
+            System.out.println("Zadejte druh: ");
+            String druh = scanner.nextLine();
 
-    case 3: {
-        System.out.println("Prumerny vek mazlicka: " + SpravaMazlicku.vypocetPrumernehoVeku(mazlicek));
 
-        System.out.println("Prumerna vaha: " + SpravaMazlicku.vypocetPrumerneVahy(mazlicek));
+            System.out.println("Zadejte vek: ");
+            int vek = scanner.nextInt();
+            scanner.nextLine();
 
-    }
-
-    case 4: {
-        System.out.println("Zadejte jmeno: ");
-        String hledane = scanner.nextLine();
-        Mazlicek nalezen = SpravaMazlicku.najdiMazlickaPodleJmena(hledane, mazlicek);
-
-        if (nalezen != null) {
-            System.out.println("Nalezen: " + nalezen);
-        } else {
-            System.out.println("Mazlicek nenalezen");
+            System.out.println("Zadejte vahu: ");
+            double vaha = scanner.nextDouble();
+            scanner.nextLine();
+            mazlicek.add(new Mazlicek(jmeno, druh, vek, vaha));
+        }
+        case 2 -> {
+            for (Mazlicek m : mazlicek)
+                System.out.println(m);
         }
 
-    }
+        case 3 -> {
+            System.out.println("Prumerny vek mazlicka: " + SpravaMazlicku.vypocetPrumernehoVeku(mazlicek));
 
-    case 5: {
-        System.out.println("Zadejte druh: ");
-        String druh = scanner.nextLine();
-        Mazlicek filtrovani = SpravaMazlicku.filtrujMazlickyPodleDruhu(druh, mazlicek);
-        if (filtrovani != null) {
-            System.out.println("Nebyl nalezen zadni mazlicek");
-        } else {
+            System.out.println("Prumerna vaha: " + SpravaMazlicku.vypocetPrumerneVahy(mazlicek));
 
         }
 
+        case 4 -> {
+            System.out.println("Zadejte jmeno: ");
+            String hledane = scanner.nextLine();
+            Mazlicek nalezen = SpravaMazlicku.najdiMazlickaPodleJmena(hledane, mazlicek);
+
+            if (nalezen != null) {
+                System.out.println("Nalezen: " + nalezen);
+            } else {
+                System.out.println("Mazlicek nenalezen");
+            }
+
+        }
+
+        case 5 -> {
+            System.out.println("Zadejte druh: ");
+            String druh = scanner.nextLine();
+            Mazlicek filtrovani = SpravaMazlicku.filtrujMazlickyPodleDruhu(druh, mazlicek);
+            if (filtrovani != null) {
+                System.out.println("Nebyl nalezen zadni mazlicek");
+            } else {
+                for (Mazlicek m : mazlicek) {
+                    System.out.println(m);
+                }
+            }
+
+        }
+
+        case 0 -> running = false;
+        default -> System.out.println("Neplatna volba");
+
     }
-
-
-
-
-
-
-
-
-
 }
 
-
-
-
-
-
-
-
-
-
+        scanner.close();
 
     }
 }
